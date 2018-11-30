@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using MultiTenantApp.Services;
 using OrchardCore.Environment.Shell;
 
 namespace MultiTenantApp
@@ -36,8 +37,20 @@ namespace MultiTenantApp
                 // Read the tenant-specific custom settings.
                 var customSetting = shellSettings.Configuration["CustomSetting"];
 
-                // Write the value of the custom setting to the response stream.
-                await context.Response.WriteAsync(customSetting);
+                // Resolve all registered IMessageProvider services
+                var messageProviders = context.RequestServices.GetServices<IMessageProvider>();
+
+                // Invoke all IMessageProviders
+                var messages = (await Task.WhenAll(messageProviders.Select(async x => await x.GetMessageAsync()))).ToList();
+
+                // Add the custom setting as a message. Alternativly, could have implemented another IMessageProvider that reads the CustomSetting
+                messages.Insert(0, customSetting);
+
+                // Concatenate all messages.
+                var output = string.Join("\r\n", messages);
+
+                // Write the output string to the response stream.
+                await context.Response.WriteAsync(output);
             }));
         }
     }
