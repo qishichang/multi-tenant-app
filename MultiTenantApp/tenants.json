@@ -4,13 +4,13 @@
     "RequestUrlHost": null,
     "RequestUrlPrefix": "Customer-a",
     "CustomSetting": "Custom setting for Customer A",
-    "Features": [ "RemoteIp" ]
+    "Features": [ "Welcome", "RemoteIp" ]
   },
   "CustomerB": {
     "State": "Running",
     "RequestUrlHost": null,
     "RequestUrlPrefix": "customer-b",
     "CustomSetting": "Custom setting for Customer B",
-    "Features": [ "TimeOfDay", "RemoteIp" ]
+    "Features": [ "Welcome", "TimeOfDay", "RemoteIp" ]
   }
 }

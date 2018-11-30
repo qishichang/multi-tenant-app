@@ -44,7 +44,7 @@ namespace MultiTenantApp
                 var messages = (await Task.WhenAll(messageProviders.Select(async x => await x.GetMessageAsync()))).ToList();
 
                 // Add the custom setting as a message. Alternativly, could have implemented another IMessageProvider that reads the CustomSetting
-                messages.Insert(0, customSetting);
+                //messages.Insert(0, customSetting);
 
                 // Concatenate all messages.
                 var output = string.Join("\r\n", messages);

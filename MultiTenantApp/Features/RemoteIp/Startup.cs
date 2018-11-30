@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 [assembly: OrchardCore.Modules.Manifest.Feature(
     Id = "RemoteIp",
-    Name = "RemoteIp"
+    Name = "RemoteIp",
+    Priority = "2000"
 )]
 
 namespace MultiTenantApp.Features.RemoteIp

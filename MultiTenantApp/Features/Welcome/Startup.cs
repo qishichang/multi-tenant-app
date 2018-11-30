@@ -7,21 +7,19 @@ using System.Linq;
 using System.Threading.Tasks;
 
 [assembly: OrchardCore.Modules.Manifest.Feature(
-    Id = "TimeOfDay",
-    Name = "TimeOfDay",
-    Priority = "1001"
+    Id = "Welcome",
+    Name = "Welcome",
+    Priority = "1000"
 )]
 
-
-namespace MultiTenantApp.Features.TimeOfDay
+namespace MultiTenantApp.Features.Welcome
 {
-
-    [Feature("TimeOfDay")]
+    [Feature("Welcome")]
     public class Startup : StartupBase
     {
         public override void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IMessageProvider, TimeOfDayMessageProvider>();
+            services.AddScoped<IMessageProvider, WelcomeMessageProvider>();
         }
     }
 }
